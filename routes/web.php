@@ -24,14 +24,17 @@ Route::get('/admin', function () {
     return view('admin');
 });
 
-Route::get('/admin/stockrooms', 'StockroomController@index');
-Route::get('/admin/stockrooms/create','StockroomController@create');
-Route::post('/admin/stockrooms','StockroomController@store');
-Route::get('/admin/stockrooms/{stockroom_number}', 'StockroomController@show');
-//Route::get('/admin/stockrooms/{stockroom_number}', 'StockroomController@edit');
+Route::get('/admin/stockrooms', [App\Http\Controllers\StockroomController::class, 'index']);
+Route::get('/admin/stockrooms/create', [App\Http\Controllers\StockroomController::class, 'create']);
+Route::post('/admin/stockrooms', [App\Http\Controllers\StockroomController::class, 'store']);
+Route::get('/admin/stockrooms/{stockroom_number}',  [App\Http\Controllers\StockroomController::class, 'show']);
+Route::get('/admin/stockrooms/{stockroom_number}/edit', [App\Http\Controllers\StockroomController::class, 'edit']);
+Route::put('/admin/stockrooms/{stockroom_number}', [App\Http\Controllers\StockroomController::class, 'update']);
+
 
 Route::get('/admin/customers', [App\Http\Controllers\CustomerController::class, 'index']);
 Route::get('/admin/customers/enroll', [App\Http\Controllers\CustomerController::class, 'create']);
+Route::post('/admin/customers', [App\Http\Controllers\CustomerController::class, 'store']);
 Route::get('/admin/customers/{customer_id}', [App\Http\Controllers\CustomerController::class, 'show']);
 
 Route::get('/admin/products', [App\Http\Controllers\ProductController::class, 'index']);

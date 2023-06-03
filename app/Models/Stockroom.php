@@ -15,4 +15,15 @@ class Stockroom extends Model
     {
         return $value ? 'Active' : 'Inactive';
     }
+
+    public function getIsOcuppiedAttribute($value)
+    {
+        return $value ? 'Occupied' : 'Vacant';
+    }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
+
 }

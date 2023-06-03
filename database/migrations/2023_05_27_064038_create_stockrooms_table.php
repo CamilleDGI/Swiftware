@@ -21,6 +21,8 @@ class CreateStockroomsTable extends Migration
             $table->string('unit_of_measurement');
             $table->integer('used')->default (0);
             $table->integer('available')->default (0);
+            $table->string('notes')->nullable();
+            $table->boolean('is_occupied')->default(false);
             $table->timestamps();
         });
     }

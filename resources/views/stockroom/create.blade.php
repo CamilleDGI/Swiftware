@@ -23,7 +23,10 @@
                     <option value="box">BOX</option>
                 </select>
             <br>
-                
+                <label for="note" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes:</label>
+                <textarea id="note" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Customer's notes and/or other instruction..."></textarea>
+ 
+                <br>   
                 <label class="relative inline-flex items-center mb-4 cursor-pointer">
                     <input type="checkbox" value="" name='is_active' class="sr-only peer">
                     <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>

@@ -40,10 +40,29 @@ class StockroomController extends Controller
         return redirect('/admin/stockrooms');
     }
 
-    public function edit($stockroom_number){
+    public function edit($stockroom_number)
+    {
         $stockroom = Stockroom::find($stockroom_number);
-        return view('stockroom.edit', compact('stockroom'));
+        return view('stockroom.editstockroom', compact('stockroom'));
     }
+
+    public function update(Request $request, $stockroom_number)
+    {
+        $stockroom = Stockroom::find($stockroom_number);
+
+    // Update the stockroom attributes with the submitted form data
+    $stockroom->update([
+        'name' => $request->input('name'),
+        'capacity' => $request->input('capacity'),
+        'unit_of_measurement' => $request->input('unit_of_measurement'),
+        'is_active' => $request->has('is_active'), // Update the value based on the checkbox
+    ]);
+
+    // Redirect to the stockroom details page or any other appropriate page
+    return redirect('/admin/stockrooms/' . $stockroom->id);
+}
+
+
 
 
 }
