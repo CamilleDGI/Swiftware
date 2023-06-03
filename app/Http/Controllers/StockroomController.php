@@ -40,4 +40,10 @@ class StockroomController extends Controller
         return redirect('/admin/stockrooms');
     }
 
+    public function edit($stockroom_number){
+        $stockroom = Stockroom::find($stockroom_number);
+        return view('stockroom.edit', compact('stockroom'));
+    }
+
+
 }
