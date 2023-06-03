@@ -23,13 +23,11 @@
                 <a href="#" class="brand-logo brand-text"><img class="w-16 h-16" src="/assets/SWS LOGO.png" alt="avatar"/></a>
                 <ul id="nav-mobile" class="right hide-on-small-and-down">
                     <li><a href="/admin/stockrooms" class="btn brand z-depth-0">Stockroom</a></li>
-                    <li><a href="/admin/customers" class="btn brand z-depth-0">Customer</a></li>
-                    <li><a href="/admin/products" class="btn brand z-depth-0">Products</a></li>
                     <li><a href="#" class="btn brand z-depth-0">Log-out</a></li>
                 </ul>
             </div>
         </nav>
-        @yield('content')
+        @yield('operation')
 
     <footer>
         Copyright 2023 SwiftWare Warehousing Solutions
