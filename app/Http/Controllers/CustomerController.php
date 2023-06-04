@@ -19,8 +19,9 @@ class CustomerController extends Controller
 
         $customer = Customer::findOrFail($id);
 
-        return view('customer.percustomer', ['customer'=> $customer]);
+        return view('customer.percustomer', compact('customer'));
     }
+
 
     public function create()
     {
@@ -47,14 +48,51 @@ class CustomerController extends Controller
             $customer-> is_active = request()->has('is_active');
             $customer-> with_inventory = request()->has('with_inventory');
 
-            $customer-> save();
+            $customer->save();
 
-            $stockroom = Stockroom::find($customer->stockroom);
+            $stockroom = Stockroom::where('name', $customer->stockroom)->first();
             $stockroom->is_occupied = true;
             $stockroom->save();
+
 
         return redirect('/admin/customers');
     }
 
+    public function edit($id)
+    {
+        $customer = Customer::find($id);
+        $activeStockrooms = Stockroom::where('is_active', true)->get();
+        
+        return view('customer.editcustomer', compact('customer', 'activeStockrooms'));
+    }
+
+    public function update(Request $request, $customer_number)
+    {
+        $customer = Customer::find($customer_number);
+
+        // Update the customer attributes with the submitted form data
+        $customer->update([
+            'name' => $request->input('name'),
+            'stockroom' => $request->input('stockroom'),
+            'start' => $request->input('start'),
+            'end' => $request->input('end'),
+            'used_access' => $request->input('used_acces'),
+            'doc_req' => $request->input('doc_req'),
+            'remarks' => $request->input('remarks'),
+            'logo' => $request->input('logo'),
+            'is_active' => $request->has('is_active'),
+            'with_inventory' => $request->has('with_inventory'), // Update the value based on the checkbox
+        ]);
+
+        $usedAccess = request('used_access');
+        $customer->used_access = isset($usedAccess) ? $usedAccess : $customer->used_access;
+        
+
+        // Save the updated customer record
+        $customer->save();
+
+        // Redirect to the stockroom details page or any other appropriate page
+        return redirect('/admin/customers/' . $customer->id);
+    }
 
 }

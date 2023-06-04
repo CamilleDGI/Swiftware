@@ -18,8 +18,9 @@ class Customer extends Model
 
     public function stockroom()
     {
-        return $this->belongsTo(Stockroom::class);
+        return $this->belongsTo(Stockroom::class, 'stockroom', 'name');
     }
 
+    
 
 }

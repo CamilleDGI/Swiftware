@@ -36,6 +36,8 @@ Route::get('/admin/customers', [App\Http\Controllers\CustomerController::class, 
 Route::get('/admin/customers/enroll', [App\Http\Controllers\CustomerController::class, 'create']);
 Route::post('/admin/customers', [App\Http\Controllers\CustomerController::class, 'store']);
 Route::get('/admin/customers/{customer_id}', [App\Http\Controllers\CustomerController::class, 'show']);
+Route::get('/admin/customers/{customers_number}/edit', [App\Http\Controllers\CustomerController::class, 'edit']);
+Route::put('/admin/customers/{customer_id}', [App\Http\Controllers\CustomerController::class, 'update']);
 
 Route::get('/admin/products', [App\Http\Controllers\ProductController::class, 'index']);
 Route::get('/admin/products/add', [App\Http\Controllers\ProductController::class, 'create']);
