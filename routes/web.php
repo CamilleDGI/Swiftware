@@ -40,7 +40,11 @@ Route::get('/admin/customers/{customers_number}/edit', [App\Http\Controllers\Cus
 Route::put('/admin/customers/{customer_id}', [App\Http\Controllers\CustomerController::class, 'update']);
 
 Route::get('/admin/products', [App\Http\Controllers\ProductController::class, 'index']);
-Route::get('/admin/products/add', [App\Http\Controllers\ProductController::class, 'create']);
+Route::get('/admin/customers/{customer_id}/addproduct', [ProductController::class, 'addProduct'])->name('addproduct');
+Route::post('/admin/products', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
+Route::get('/admin/products/{product_id}', [App\Http\Controllers\ProductController::class, 'show']);
+
+
 
 Route::get('/operation', function () {
     return view('operation.operation');

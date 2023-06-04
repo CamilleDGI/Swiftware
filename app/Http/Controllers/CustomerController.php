@@ -48,6 +48,7 @@ class CustomerController extends Controller
             $customer-> is_active = request()->has('is_active');
             $customer-> with_inventory = request()->has('with_inventory');
 
+
             $customer->save();
 
             $stockroom = Stockroom::where('name', $customer->stockroom)->first();

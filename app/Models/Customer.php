@@ -16,6 +16,11 @@ class Customer extends Model
         return $value ? 'Active' : 'Inactive';
     }
 
+    public function getWithInventoryAttribute($value)
+    {
+        return $value ? 'With Inventory' : 'Without Inventory';
+    }
+
     public function stockroom()
     {
         return $this->belongsTo(Stockroom::class, 'stockroom', 'name');

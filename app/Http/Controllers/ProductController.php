@@ -3,23 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
+use App\Models\Stockroom;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
     public function index(){
         
-        $products = [
-            ['product_id' => '1', 'product_name' => 'Deomax', 'company_name' => 'ABC Company', 'quantity' => '0', 'measurement' => 'pcs', 'status' => 'Active'],
-            ['product_id' => '2', 'product_name' => 'Baseoil', 'company_name' => 'ABC Company', 'quantity' => '0', 'measurement' => 'pcs', 'status' => 'Active'],
-            ['product_id' => '3', 'product_name' => 'Additives', 'company_name' => 'XYZ Company', 'quantity' => '0', 'measurement' => 'pcs', 'status' => 'Active'],
-        ];
-
-        //$customers = Customer::all();
+        $products = Product::all();
 
         return view('product.products', ['products' => $products]);
     }
 
-    public function create(){
-        return view('product.addproduct');
+    public function addProduct($customerId)
+    {
+        $customer = Customer::findOrFail($customerId);
+        $stockroom = Stockroom::where('name', $customer->stockroom)->first(); 
+
+        return view('product.addproduct', compact('customer', 'stockroom'));
     }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $customerId = request('customer_id');
+        $customer = Customer::findOrFail($customerId);
+        $stockroom = Stockroom::where('name', $customer->stockroom)->first();
+
+        $product = new Product();
+        $product->name = request('name');
+        $product->stockroom = $customer->stockroom;
+        $product->unit_of_measurement = $stockroom->unit_of_measurement;
+        $product->is_active = request()->has('is_active');
+        
+        $product->save();
+
+        return redirect()->route('product.products')->with('success', 'Product added successfully.');
+    }
+
+
+
+
 }
