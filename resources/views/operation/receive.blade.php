@@ -1,7 +1,7 @@
 @extends('layouts.layouts1')
 
 @section('operation')
-<div class="relative flex items-top justify-center full-height">
+<div>
     <div class="content">
         <div class="title m-b-md pt-5 text-center">
             Receive Items
@@ -46,20 +46,6 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="w-full">
-                  <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
-                  <select id="unit_of_measurement" name="unit_of_measurement" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected>Product</option>
-                                    <option value="b-001">Deomax</option>
-                                    <option value="b-003">Baseoil</option>
-                                    <option value="b-004">Additives</option>
-                                </select>
-                                          </div>
-              <div class="w-full">
-                  <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity Received:</label>
-                  <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required="">
-              </div>
-
             </form>
             <br>
                 <button type="button" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-2 mr-1 mb-5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Add</button>

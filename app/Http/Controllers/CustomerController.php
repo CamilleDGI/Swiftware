@@ -77,7 +77,7 @@ class CustomerController extends Controller
             'stockroom' => $request->input('stockroom'),
             'start' => $request->input('start'),
             'end' => $request->input('end'),
-            'used_access' => $request->input('used_acces'),
+            'used_access' => $request->input('used_access'),
             'doc_req' => $request->input('doc_req'),
             'remarks' => $request->input('remarks'),
             'logo' => $request->input('logo'),
@@ -95,5 +95,17 @@ class CustomerController extends Controller
         // Redirect to the stockroom details page or any other appropriate page
         return redirect('/admin/customers/' . $customer->id);
     }
+
+    // public function perCustomer($customerId)
+    // {
+    //     $customer = Customer::find($customerId);
+    //     $products = Product::where('customer_id', $customerId)->get();
+
+    //     return view('customer.percustomer', [
+    //         'customer' => $customer,
+    //         'products' => $products
+    //     ]);
+    // }
+
 
 }
