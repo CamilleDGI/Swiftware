@@ -26,10 +26,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-        ]);
-
         $customerId = request('customer_id');
         $customer = Customer::findOrFail($customerId);
         $stockroom = Stockroom::where('name', $customer->stockroom)->first();
@@ -39,11 +35,12 @@ class ProductController extends Controller
         $product->stockroom = $customer->stockroom;
         $product->unit_of_measurement = $stockroom->unit_of_measurement;
         $product->is_active = request()->has('is_active');
-        
+
         $product->save();
 
-        return redirect()->route('product.products')->with('success', 'Product added successfully.');
+        return redirect()->route('customer.details', ['customer_id' => $customerId])->with('success', 'Product added successfully.');
     }
+
 
 
 

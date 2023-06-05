@@ -41,8 +41,9 @@ Route::put('/admin/customers/{customer_id}', [App\Http\Controllers\CustomerContr
 
 Route::get('/admin/products', [App\Http\Controllers\ProductController::class, 'index']);
 Route::get('/admin/customers/{customer_id}/addproduct', [ProductController::class, 'addProduct'])->name('addproduct');
-Route::post('/admin/products', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
-Route::get('/admin/products/{product_id}', [App\Http\Controllers\ProductController::class, 'show']);
+Route::post('/admin/customers/{customer_id}', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
+Route::get('/admin/customers/{customer_id}', [App\Http\Controllers\CustomerController::class, 'show'])->name('customer.details');
+
 
 
 
