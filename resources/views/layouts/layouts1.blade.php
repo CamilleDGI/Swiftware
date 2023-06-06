@@ -22,7 +22,7 @@
             <div class="container">
                 <a href="#" class="brand-logo brand-text"><img class="w-16 h-16" src="/assets/SWS LOGO.png" alt="avatar"/></a>
                 <ul id="nav-mobile" class="right hide-on-small-and-down">
-                    <li><a href="/admin/stockrooms" class="btn brand z-depth-0">Stockroom</a></li>
+                    <li><a href="/operation/stockroom" class="btn brand z-depth-0">Stockroom</a></li>
                     <li><a href="#" class="btn brand z-depth-0">Log-out</a></li>
                 </ul>
             </div>

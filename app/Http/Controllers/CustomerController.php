@@ -98,19 +98,13 @@ class CustomerController extends Controller
     }
 
     public function perCustomer($customerId)
-{
-    $customer = Customer::find($customerId);
-    $stockroomName = $customer->stockroom; // Assuming stockroom name is stored in the `stockroom` column of the `customers` table
+    {
+        $customer = Customer::with('products')->find($customerId);
 
-    $products = Product::whereHas('stockroom', function ($query) use ($stockroomName) {
-        $query->where('name', $stockroomName);
-    })->get();
-
-    return view('customer.percustomer', [
-        'customer' => $customer,
-        'products' => $products
-    ]);
-}
+        return view('customer.percustomer', [
+            'customer' => $customer,
+        ]);
+    }
 
 
 

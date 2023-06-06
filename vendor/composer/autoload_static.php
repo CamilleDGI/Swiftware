@@ -168,6 +168,7 @@ class ComposerStaticInit2dd8ac2ab35f2bbb57c388d2b8072d95
         'A' => 
         array (
             'Asm89\\Stack\\' => 12,
+            'App\\Models\\' => 11,
             'App\\' => 4,
         ),
     );
@@ -483,6 +484,10 @@ class ComposerStaticInit2dd8ac2ab35f2bbb57c388d2b8072d95
         array (
             0 => __DIR__ . '/..' . '/asm89/stack-cors/src',
         ),
+        'App\\Models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/Models',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -502,9 +507,11 @@ class ComposerStaticInit2dd8ac2ab35f2bbb57c388d2b8072d95
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CustomerController' => __DIR__ . '/../..' . '/app/Http/Controllers/CustomerController.php',
         'App\\Http\\Controllers\\OperationController' => __DIR__ . '/../..' . '/app/Http/Controllers/OperationController.php',
+        'App\\Http\\Controllers\\OpsStockroomController' => __DIR__ . '/../..' . '/app/Http/Controllers/OpsStockroomController.php',
         'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Controllers\\StockroomController' => __DIR__ . '/../..' . '/app/Http/Controllers/StockroomController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -517,7 +524,9 @@ class ComposerStaticInit2dd8ac2ab35f2bbb57c388d2b8072d95
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Customer' => __DIR__ . '/../..' . '/app/Models/Customer.php',
+        'App\\Models\\OpsStockroom' => __DIR__ . '/../..' . '/app/Models/OpsStockroom.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
+        'App\\Models\\Receive' => __DIR__ . '/../..' . '/app/Models/Receive.php',
         'App\\Models\\Stockroom' => __DIR__ . '/../..' . '/app/Models/Stockroom.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

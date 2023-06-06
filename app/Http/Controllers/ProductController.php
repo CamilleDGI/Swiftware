@@ -32,6 +32,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = request('name');
+        $product->remarks = request('remarks');
         $product->stockroom = $customer->stockroom;
         $product->unit_of_measurement = $stockroom->unit_of_measurement;
         $product->is_active = request()->has('is_active');

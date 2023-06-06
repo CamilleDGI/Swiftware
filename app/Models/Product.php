@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = 'products';
-    protected $fillable = ['name', 'is_active'];
+    protected $fillable = ['name', 'remarks', 'is_active'];
 
     public function getIsActiveAttribute($value)
     {

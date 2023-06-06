@@ -20,7 +20,10 @@ class CreateProductsTable extends Migration
             $table->integer('qty')->default (0);
             $table->string('unit_of_measurement');
             $table->string('stockroom');
+            $table->string('remarks');
             $table->boolean('is_active')->default(false);
+            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
 
         });
     }

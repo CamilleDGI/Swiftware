@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StockroomController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
@@ -20,9 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
-});
+// Route::get('/admin', function () {
+//     return view('admin');
+// });
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
 
 Route::get('/admin/stockrooms', [App\Http\Controllers\StockroomController::class, 'index']);
 Route::get('/admin/stockrooms/create', [App\Http\Controllers\StockroomController::class, 'create']);
@@ -47,11 +49,16 @@ Route::get('/admin/customers/{customer_id}', [App\Http\Controllers\CustomerContr
 
 
 
-Route::get('/operation', function () {
-    return view('operation.operation');
-});
+// Route::get('/operation', function () {
+//     return view('operation.operation');
+// });
 
 
 Route::get('/operation', [App\Http\Controllers\OperationController::class, 'index']);
+
+Route::get('/operation/stockroom', [App\Http\Controllers\OpsStockroomController::class, 'index'])->name('stockroom.index');
+
+//Route::get('/operation', [App\Http\Controllers\OperationController::class, 'index']);
+
 Route::get('/operation/receive', [App\Http\Controllers\OperationController::class, 'create']);
 

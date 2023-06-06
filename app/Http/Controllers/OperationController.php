@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 class OperationController extends Controller
 {
     
-    public function create(){
-        return view('operation.receive');
+    public function index(){
+        
+    //     $receives = Receive::all();
+
+        return view('operation.operation');
     }
 
 }

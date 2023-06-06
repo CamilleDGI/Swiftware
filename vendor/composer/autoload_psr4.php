@@ -83,5 +83,6 @@ return array(
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
     'Asm89\\Stack\\' => array($vendorDir . '/asm89/stack-cors/src'),
+    'App\\Models\\' => array($baseDir . '/app/Models'),
     'App\\' => array($baseDir . '/app'),
 );
