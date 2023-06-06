@@ -26,6 +26,11 @@ class Customer extends Model
         return $this->belongsTo(Stockroom::class, 'stockroom', 'name');
     }
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     
 
 }

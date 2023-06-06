@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Stockroom;
+use App\Models\Product;
 
 class CustomerController extends Controller
 {
@@ -96,16 +97,28 @@ class CustomerController extends Controller
         return redirect('/admin/customers/' . $customer->id);
     }
 
-    // public function perCustomer($customerId)
-    // {
-    //     $customer = Customer::find($customerId);
-    //     $products = Product::where('customer_id', $customerId)->get();
+    public function perCustomer($customerId)
+{
+    $customer = Customer::find($customerId);
+    $stockroomName = $customer->stockroom; // Assuming stockroom name is stored in the `stockroom` column of the `customers` table
 
-    //     return view('customer.percustomer', [
-    //         'customer' => $customer,
-    //         'products' => $products
-    //     ]);
-    // }
+    $products = Product::whereHas('stockroom', function ($query) use ($stockroomName) {
+        $query->where('name', $stockroomName);
+    })->get();
+
+    return view('customer.percustomer', [
+        'customer' => $customer,
+        'products' => $products
+    ]);
+}
+
+
+
+
+
+    
+
+
 
 
 }

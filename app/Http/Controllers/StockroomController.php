@@ -62,7 +62,10 @@ class StockroomController extends Controller
         return redirect('/admin/stockrooms/' . $stockroom->id);
     }
 
-
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'stockroom_id');
+    }
 
 
 }

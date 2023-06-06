@@ -15,4 +15,14 @@ class Product extends Model
     {
         return $value ? 'Active' : 'Inactive';
     }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+    public function stockroom()
+    {
+        return $this->belongsTo(Stockroom::class, 'stockroom_id');
+    }
+
+    
 }
