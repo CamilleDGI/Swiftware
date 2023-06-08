@@ -1,6 +1,14 @@
 @extends('layouts.layouts')
 
 @section('content')
+
+@if($message = Session::get('success'))
+    <div class="alert alert-success">
+        {{ $message }}
+    </div>
+
+@endif
+
 <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 py-4 sm:pt-0">
     <div class="content">
         <div class="title m-b-md text-center">
@@ -28,7 +36,7 @@
                 @if(count($customers) > 0)
                     @foreach($customers as $customer)
                         <tr>
-                            <td class="border border-slate-300 ..."><img src="{{ asset('images/' . $customer->logo)}}" width="75"/></td>
+                            <td class="border border-slate-300 ..."><img src="{{ asset('storage/logos/' . $customer->logo)}}" width="75" /></td>
                             <td class="border border-slate-300 ...">{{ $customer->name }}</td>
                             <td class="border border-slate-300 ...">{{ $customer->stockroom }}</td>
                             <td class="border border-slate-300 ...">{{ $customer->is_active }}</td>

@@ -7,38 +7,40 @@
             Receive Items
         </div>
         <br>
-        <div class="row border rounded">
+        <form action="/operation/transaction" method="POST">
+            @csrf
+
+            <div class="row border rounded">
             <div class="row">
                 <div class="col">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company:</label>
-                    <input type="text" name="customer_name" value="{{ $customer->name }}" readonly>
+                    <input type="text" name="customer_name" value="{{ $customer->name }}">
                 </div>
-                <div class="col">   
+                <div class="col">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stockroom:</label>
-                    <input type="text" name="stockroom" value="{{ $stockroom->name ?? '' }}" readonly>
+                    <input type="text" name="stockroom" value="{{ $stockroom->name ?? '' }}">
                 </div>
-                <div class="col">   
+                <div class="col">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Documentation Requirements:</label>
-                    <input type="text" name="stockroom" value="{{ $customer->doc_req ?? '' }}" readonly>
+                    <input type="text" name="stockroom" value="{{ $customer->doc_req ?? '' }}">
                 </div>
             </div>
             <div class="row">
-                <div class="col">                      
+                <div class="col">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload file</label>
                     <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
                 </div>
-                <div class="col">                      
+                <div class="col">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Receiving Document/s:</label>
-                    <textarea id="rec_req" rows="4" name="rec_req" class="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Delivery Receipt/Transmittal Form..."></textarea>
+                    <textarea id="attachments" rows="4" name="attachments" class="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Delivery Receipt/Transmittal Form..."></textarea>
                 </div>
             </div>
         </div>
 
 
-        <div class="row">
-            <form action="/operation/receive" method="POST">
-            @csrf
 
+        <div class="row">
+            
             @if ($customer->with_inventory === 'With Inventory')
             <table class="border-collapse border border-slate-400 ...">
                 <thead>

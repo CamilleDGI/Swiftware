@@ -35,7 +35,7 @@ Route::get('/admin/stockrooms/{stockroom_number}/edit', [App\Http\Controllers\St
 Route::put('/admin/stockrooms/{stockroom_number}', [App\Http\Controllers\StockroomController::class, 'update']);
 
 
-Route::get('/admin/customers', [App\Http\Controllers\CustomerController::class, 'index']);
+Route::get('/admin/customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('admin.customers');
 Route::get('/admin/customers/enroll', [App\Http\Controllers\CustomerController::class, 'create']);
 Route::post('/admin/customers', [App\Http\Controllers\CustomerController::class, 'store']);
 Route::get('/admin/customers/{customer_id}', [App\Http\Controllers\CustomerController::class, 'perCustomer'])->name('customers.show');
@@ -61,5 +61,5 @@ Route::get('/operation/transaction', [App\Http\Controllers\TransactionController
 
 //Route::get('/operation', [App\Http\Controllers\OperationController::class, 'index']);
 
-Route::get('/operation/transaction/{customers_id}/receive', [App\Http\Controllers\TransactionController::class, 'receive'])->name('receive');
+Route::get('/operation/transaction/{customer_id}/receive', [App\Http\Controllers\TransactionController::class, 'receive'])->name('receive');
 

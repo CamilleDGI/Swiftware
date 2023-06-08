@@ -16,6 +16,7 @@ class CreateReceivesTable extends Migration
         Schema::create('receives', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            
         });
     }
 

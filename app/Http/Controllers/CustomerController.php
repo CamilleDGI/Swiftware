@@ -33,32 +33,76 @@ class CustomerController extends Controller
     }
     
 
-    public function store() {
+    // public function store() {
+
+    //     $customer = new Customer();
+
+
+    //         $customer-> name = request('name');
+    //         $customer-> stockroom = request('stockroom');
+    //         $customer-> start = request('start');
+    //         $customer-> end = request('end');
+    //         $customer-> used_access = request('used_access');
+    //         $customer-> doc_req = request('doc_req');
+    //         $customer-> remarks = request('remakrs');
+    //         $customer-> logo = request('logo');
+    //         $customer-> is_active = request()->has('is_active');
+    //         $customer-> with_inventory = request()->has('with_inventory');
+
+
+    //         $customer->save();
+
+    //         $stockroom = Stockroom::where('name', $customer->stockroom)->first();
+    //         $stockroom->is_occupied = true;
+    //         $stockroom->save();
+
+
+    //     return redirect('/admin/customers');
+    // }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'logo' => 'required|max:2048',
+            'name' => 'required',
+            'stockroom' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+            'used_access' => 'required',
+            'doc_req' => 'required',
+            'remarks' => 'required',
+            
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $logoFile = $request->file('logo');
+            $logoFileName = time() . '_' . $logoFile->getClientOriginalName();
+            $logoFile->storeAs('public/logos', $logoFileName);
+            $customer->logo = $logoFileName;
+        }
+        
 
         $customer = new Customer();
+        $customer->name = $request->input('name');
+        $customer->stockroom = $request->input('stockroom');
+        $customer->start = $request->input('start');
+        $customer->end = $request->input('end');
+        $customer->used_access = $request->input('used_access');
+        $customer->doc_req = $request->input('doc_req');
+        $customer->remarks = $request->input('remarks');
+        $customer->is_active = $request->has('is_active');
+        $customer->with_inventory = $request->has('with_inventory');
 
+        $customer->save();
 
-            $customer-> name = request('name');
-            $customer-> stockroom = request('stockroom');
-            $customer-> start = request('start');
-            $customer-> end = request('end');
-            $customer-> used_access = request('used_access');
-            $customer-> doc_req = request('doc_req');
-            $customer-> remarks = request('remakrs');
-            $customer-> logo = request('logo');
-            $customer-> is_active = request()->has('is_active');
-            $customer-> with_inventory = request()->has('with_inventory');
+        $stockroom = Stockroom::where('name', $customer->stockroom)->first();
+        $stockroom->is_occupied = true;
+        $stockroom->save();
 
-
-            $customer->save();
-
-            $stockroom = Stockroom::where('name', $customer->stockroom)->first();
-            $stockroom->is_occupied = true;
-            $stockroom->save();
-
-
-        return redirect('/admin/customers');
+        return redirect()->route('admin.customers')->with('success','Customer has been added successfully.');
     }
+
+
 
     public function edit($id)
     {
@@ -72,7 +116,20 @@ class CustomerController extends Controller
     {
         $customer = Customer::find($customer_number);
 
-        // Update the customer attributes with the submitted form data
+        $request->validate([
+            'name' => 'required',
+            'stockroom' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+            'used_access' => 'required',
+            'doc_req' => 'required',
+            'remarks' => 'required',
+            'logo' => 'nullable|max:2048',
+            'is_active' => 'boolean',
+            'with_inventory' => 'boolean',
+        ]);
+        
+
         $customer->update([
             'name' => $request->input('name'),
             'stockroom' => $request->input('stockroom'),
@@ -81,20 +138,20 @@ class CustomerController extends Controller
             'used_access' => $request->input('used_access'),
             'doc_req' => $request->input('doc_req'),
             'remarks' => $request->input('remarks'),
-            'logo' => $request->input('logo'),
             'is_active' => $request->has('is_active'),
             'with_inventory' => $request->has('with_inventory'), // Update the value based on the checkbox
         ]);
 
-        $usedAccess = request('used_access');
-        $customer->used_access = isset($usedAccess) ? $usedAccess : $customer->used_access;
-        
+        if ($request->hasFile('logo')) {
+            $logoFile = $request->file('logo');
+            $logoFileName = time() . '_' . $logoFile->getClientOriginalName();
+            $logoFile->storeAs('public/logos', $logoFileName);
+            $customer->logo = $logoFileName;
+        }
 
-        // Save the updated customer record
-        $customer->save();
+       $customer->save();
 
-        // Redirect to the stockroom details page or any other appropriate page
-        return redirect('/admin/customers/' . $customer->id);
+       return redirect()->route('admin.customers.{customer_id}')->with('success','Customer information has been updated.');
     }
 
     public function perCustomer($customerId)

@@ -1,6 +1,18 @@
 @extends('layouts.layouts')
 
 @section('content')
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
 <div class="relative flex items-top justify-center full-height">
     <div class="content">
         <div class="title m-b-md pt-5">
@@ -34,11 +46,11 @@
                 <input type="text" id="used_access" name='used_access' class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <br>
                 
-                <label for="document" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Documentation Requiremets</label>
-                <textarea id="document" rows="4" name="doc_req" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Delivery Receipt/Transmittal Form..."></textarea>
+                <label for="doc_req" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Documentation Requiremets</label>
+                <textarea id="doc_req" rows="4" name="doc_req" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Delivery Receipt/Transmittal Form..."></textarea>
                 <br>
-                <label for="note" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes:</label>
-                <textarea id="note" rows="4" name="remarks" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Customer's notes and/or other instruction..."></textarea>
+                <label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes:</label>
+                <textarea id="remarks" rows="4" name="remarks" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Customer's notes and/or other instruction..."></textarea>
 
                 <br>
 

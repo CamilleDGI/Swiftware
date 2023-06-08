@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Stockroom;
 use App\Models\Product;
+use App\Models\Transaction;
 
 
 class TransactionController extends Controller
@@ -19,14 +20,37 @@ class TransactionController extends Controller
 
     }
 
-    public function receive($customerId)
+    // public function receive($customerId)
+    // {
+    //     $customer = Customer::findOrFail($customerId);
+    //     $stockroom = Stockroom::where('name', $customer->stockroom)->first();
+
+        
+    //     $customerProducts = Product::where('stockroom', $customer->stockroom)->get();
+
+    //     return view('operation.receive', compact('customer', 'stockroom', 'customerProducts'));
+    // }
+
+    
+
+    public function receive($id)
     {
+        $transaction = Transaction::findOrFail($id);
+
+        $customerId = request('customer_id');
         $customer = Customer::findOrFail($customerId);
         $stockroom = Stockroom::where('name', $customer->stockroom)->first();
 
-        
-        $customerProducts = Product::where('stockroom', $customer->stockroom)->get();
+        $transaction->attachments = request('attachments');
+        $transaction->doc_ref = request('doc_ref');
+        $transaction->stockroom_name = $stockroom->name;
+        $transaction->customer_name = $customer->name;
 
-        return view('operation.receive', compact('customer', 'stockroom', 'customerProducts'));
+        $transaction->save();
+
+        return redirect('/operation/transaction');
     }
+
+
+
 }

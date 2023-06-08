@@ -35,24 +35,28 @@
                 <input type="text" id="used_access" name='used_access' value="{{ old('used_access', $customer->used_access) }}" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <br>
                 
-                <label for="document" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Documentation Requiremets</label>
-                <textarea id="document" rows="4" name='doc_req' value="{{ old('doc_req', $customer->doc_req) }}" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Delivery Receipt/Transmittal Form..."></textarea>
+                <label for="doc_req" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Documentation Requiremets</label>
+                <textarea id="doc_req" rows="4" name='doc_req' value="{{ old('doc_req', $customer->doc_req) }}" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Delivery Receipt/Transmittal Form..."></textarea>
                 <br>
-                <label for="note" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes:</label>
-                <textarea id="note" rows="4" name='remarks' value="{{ old('remarks', $customer->remarks) }}" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Customer's notes and/or other instruction..."></textarea>
+                <label for="remarks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes:</label>
+                <textarea id="remarks" rows="4" name='remarks' value="{{ old('remarks', $customer->remarks) }}" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Customer's notes and/or other instruction..."></textarea>
 
                 <br>
 
                 <div class="flex items-center justify-center w-full">
                     <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="relative">
+                            <img id="preview-image" class="hidden w-40 h-40 rounded-lg" alt="Image Preview">
+                            <svg aria-hidden="true" class="absolute w-10 h-10 text-gray-400 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                        </div>
+
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                         </div>
-                        <input id="dropzone-file" type="file" class="hidden" />
+                        <input id="dropzone-file" type="file" class="hidden" name="logo" onchange="showImagePreview(this)"/>
                     </label>
-                </div> 
+                </div>
 
                 <br>
                 <label class="relative inline-flex items-center mb-4 cursor-pointer">
@@ -73,5 +77,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    function showImagePreview(input) {
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const previewImage = document.getElementById('preview-image');
+                previewImage.src = e.target.result;
+                previewImage.classList.remove('hidden');
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
 
 @endsection

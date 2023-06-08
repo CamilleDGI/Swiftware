@@ -9,6 +9,8 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['attachments', 'doc_ref'];
+
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id');
