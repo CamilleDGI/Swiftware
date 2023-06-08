@@ -6,6 +6,7 @@ use App\Http\Controllers\StockroomController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OperationController;
+use App\Http\Controllers\TransactionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,9 +57,9 @@ Route::get('/admin/customers/{customer_id}', [App\Http\Controllers\CustomerContr
 
 Route::get('/operation', [App\Http\Controllers\OperationController::class, 'index']);
 
-Route::get('/operation/stockroom', [App\Http\Controllers\OpsStockroomController::class, 'index'])->name('stockroom.index');
+Route::get('/operation/transaction', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction.index');
 
 //Route::get('/operation', [App\Http\Controllers\OperationController::class, 'index']);
 
-Route::get('/operation/receive', [App\Http\Controllers\OperationController::class, 'create']);
+Route::get('/operation/transaction/{customers_id}/receive', [App\Http\Controllers\TransactionController::class, 'receive'])->name('receive');
 

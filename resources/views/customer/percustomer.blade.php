@@ -5,7 +5,7 @@
 <div class="flex items-center justify-center space-x-4">
     <div class="flex-shrink-0">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{{ $customer->name }}</h2>
-        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/assets/SWS LOGO.png" alt="avatar"/>
+        <img class="h-auto max-w-full rounded-lg" src="{{ asset('images/' . $customer->logo)}}" alt="Logo"/>
     </div>
 
     <div class="flow-root">

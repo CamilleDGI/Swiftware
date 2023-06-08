@@ -11,9 +11,12 @@ class ProductController extends Controller
 {
     public function index(){
         
-        $products = Product::all();
+        // $products = Product::all();
 
-        return view('product.products', ['products' => $products]);
+        // return view('product.products', ['products' => $products]);
+        $products = Product::latest()->paginate(5);
+
+        return view('product.products', compact('products'))->with('i',(request()->input('page',1)-1)*5);
     }
 
     public function addProduct($customerId)

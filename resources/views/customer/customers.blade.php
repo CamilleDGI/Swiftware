@@ -15,6 +15,7 @@
             <table class="border-collapse border border-slate-400 ...">
                 <thead>
                     <tr>
+                    <th class="border border-slate-300 ..."></th>
                     <th class="border border-slate-300 ...">Customer Name</th>
                     <th class="border border-slate-300 ...">Stockroom</th>
                     <th class="border border-slate-300 ...">Status</th>
@@ -27,6 +28,7 @@
                 @if(count($customers) > 0)
                     @foreach($customers as $customer)
                         <tr>
+                            <td class="border border-slate-300 ..."><img src="{{ asset('images/' . $customer->logo)}}" width="75"/></td>
                             <td class="border border-slate-300 ...">{{ $customer->name }}</td>
                             <td class="border border-slate-300 ...">{{ $customer->stockroom }}</td>
                             <td class="border border-slate-300 ...">{{ $customer->is_active }}</td>
@@ -48,7 +50,7 @@
                 @endif
                 </tbody>
             </table>
-  
+            {!! $customers->links() !!}
         </div>
     </div>
 </div>

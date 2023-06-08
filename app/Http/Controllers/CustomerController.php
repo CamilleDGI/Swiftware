@@ -11,9 +11,9 @@ class CustomerController extends Controller
 {
     public function index(){
         
-        $customers = Customer::all();
+        $customers = Customer::latest()->paginate(5);
 
-        return view('customer.customers', ['customers' => $customers]);
+        return view('customer.customers', compact('customers'))->with('i',(request()->input('page',1)-1)*5);
     }
 
     public function show($id){
