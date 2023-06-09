@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ReceiveController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,5 +62,5 @@ Route::get('/operation/transaction', [App\Http\Controllers\TransactionController
 
 //Route::get('/operation', [App\Http\Controllers\OperationController::class, 'index']);
 
-Route::get('/operation/transaction/{customer_id}/receive', [App\Http\Controllers\TransactionController::class, 'receive'])->name('receive');
+Route::get('/operation/transaction/{customer_id}/receive', [App\Http\Controllers\ReceiveController::class, 'receive'])->name('receive');
 

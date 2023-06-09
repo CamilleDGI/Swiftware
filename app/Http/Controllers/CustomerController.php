@@ -33,33 +33,6 @@ class CustomerController extends Controller
     }
     
 
-    // public function store() {
-
-    //     $customer = new Customer();
-
-
-    //         $customer-> name = request('name');
-    //         $customer-> stockroom = request('stockroom');
-    //         $customer-> start = request('start');
-    //         $customer-> end = request('end');
-    //         $customer-> used_access = request('used_access');
-    //         $customer-> doc_req = request('doc_req');
-    //         $customer-> remarks = request('remakrs');
-    //         $customer-> logo = request('logo');
-    //         $customer-> is_active = request()->has('is_active');
-    //         $customer-> with_inventory = request()->has('with_inventory');
-
-
-    //         $customer->save();
-
-    //         $stockroom = Stockroom::where('name', $customer->stockroom)->first();
-    //         $stockroom->is_occupied = true;
-    //         $stockroom->save();
-
-
-    //     return redirect('/admin/customers');
-    // }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -82,22 +55,22 @@ class CustomerController extends Controller
         }
         
 
-        $customer = new Customer();
-        $customer->name = $request->input('name');
-        $customer->stockroom = $request->input('stockroom');
-        $customer->start = $request->input('start');
-        $customer->end = $request->input('end');
-        $customer->used_access = $request->input('used_access');
-        $customer->doc_req = $request->input('doc_req');
-        $customer->remarks = $request->input('remarks');
-        $customer->is_active = $request->has('is_active');
-        $customer->with_inventory = $request->has('with_inventory');
+            $customer = new Customer();
+            $customer->name = $request->input('name');
+            $customer->stockroom = $request->input('stockroom');
+            $customer->start = $request->input('start');
+            $customer->end = $request->input('end');
+            $customer->used_access = $request->input('used_access');
+            $customer->doc_req = $request->input('doc_req');
+            $customer->remarks = $request->input('remarks');
+            $customer->is_active = $request->has('is_active');
+            $customer->with_inventory = $request->has('with_inventory');
 
-        $customer->save();
+            $customer->save();
 
-        $stockroom = Stockroom::where('name', $customer->stockroom)->first();
-        $stockroom->is_occupied = true;
-        $stockroom->save();
+            $stockroom = Stockroom::where('name', $customer->stockroom)->first();
+            $stockroom->is_occupied = true;
+            $stockroom->save();
 
         return redirect()->route('admin.customers')->with('success','Customer has been added successfully.');
     }

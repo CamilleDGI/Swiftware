@@ -16,7 +16,11 @@ class CreateReceivesTable extends Migration
         Schema::create('receives', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->string('stockroom_name');
+            $table->string('attachments')->nullable();
+            $table->string('doc_ref');
         });
     }
 
