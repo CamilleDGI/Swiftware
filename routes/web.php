@@ -7,7 +7,6 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\ReceiveController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
