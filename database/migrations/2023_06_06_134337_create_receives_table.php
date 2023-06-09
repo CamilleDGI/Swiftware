@@ -14,13 +14,12 @@ class CreateReceivesTable extends Migration
     public function up()
     {
         Schema::create('receives', function (Blueprint $table) {
-            $table->id();
+            $table->string('id', 20);
             $table->timestamps();
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->string('customer_name');
             $table->string('stockroom_name');
             $table->string('attachments')->nullable();
-            $table->string('doc_ref');
+            $table->string('doc_ref')->nullable();
         });
     }
 

@@ -7,6 +7,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ReceiveController;
+use App\Http\Controllers\CustomAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +24,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/admin', function () {
-//     return view('admin');
-// });
+Route::get('/login',[App\Http\Controllers\CustomAuthController::class, 'login']);
+Route::get('/registration',[App\Http\Controllers\CustomAuthController::class, 'registration']);
+Route::post('/register-user',[App\Http\Controllers\CustomAuthController::class, 'registerUser'])->name('register-user');
+Route::post('/login-user',[App\Http\Controllers\CustomAuthController::class, 'loginUser'])->name('login-user');
+
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
 
 Route::get('/admin/stockrooms', [App\Http\Controllers\StockroomController::class, 'index']);
@@ -58,8 +62,15 @@ Route::get('/admin/customers/{customer_id}', [App\Http\Controllers\CustomerContr
 Route::get('/operation', [App\Http\Controllers\OperationController::class, 'index']);
 
 Route::get('/operation/transaction', [App\Http\Controllers\TransactionController::class, 'index'])->name('transaction.index');
+Route::post('/operation/transaction/{customerId}/store', [App\Http\Controllers\TransactionController::class, 'store'])->name('transaction.store');
 
-//Route::get('/operation', [App\Http\Controllers\OperationController::class, 'index']);
+Route::get('/operation/transaction/{customer_id}/receive', [App\Http\Controllers\ReceiveController::class, 'show'])->name('operation.show');
+// Route::post('/operation/transaction/{customerId}/receivePerItem', [App\Http\Controllers\ReceiveController::class, 'receivePerItem'])->name('operation.receivePerItem');
 
-Route::get('/operation/transaction/{customer_id}/receive', [App\Http\Controllers\ReceiveController::class, 'receive'])->name('receive');
 
+//Route::get('test', [App\Http\Controllers\ReceiveController::class, 'index']);
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/customer/{customer_id}', [App\Http\Controllers\CustomerAccessController::class, 'index']);

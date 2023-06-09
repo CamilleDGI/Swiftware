@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Customer;
+use App\Models\CustomUser;
 
 
 class Customer extends Model
@@ -33,7 +34,10 @@ class Customer extends Model
         return $this->hasMany(Product::class, 'customer_id');
     }
 
-
+    public function customUser()
+    {
+        return $this->hasOne(CustomUser::class);
+    }
     
 
 }
