@@ -25,7 +25,12 @@
                     <li><a href="/admin/stockrooms" class="btn brand z-depth-0">Stockroom</a></li>
                     <li><a href="/admin/customers" class="btn brand z-depth-0">Customer</a></li>
                     <li><a href="/admin/products" class="btn brand z-depth-0">Products</a></li>
-                    <li><a href="#" class="btn brand z-depth-0">Log-out</a></li>
+                    <li>
+                <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                @csrf
+                    <button type="submit" class="btn brand z-depth-0">Logout</button>
+                </form>
+                    </li>
                 </ul>
             </div>
         </nav>

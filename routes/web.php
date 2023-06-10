@@ -28,6 +28,9 @@ Route::get('/login',[App\Http\Controllers\CustomAuthController::class, 'login'])
 Route::get('/registration',[App\Http\Controllers\CustomAuthController::class, 'registration']);
 Route::post('/register-user',[App\Http\Controllers\CustomAuthController::class, 'registerUser'])->name('register-user');
 Route::post('/login-user',[App\Http\Controllers\CustomAuthController::class, 'loginUser'])->name('login-user');
+Route::post('/logout', [App\Http\Controllers\CustomAuthController::class, 'logout'])->name('logout');
+
+
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
 
@@ -73,4 +76,4 @@ Route::get('/operation/transaction/{customer_id}/receive', [App\Http\Controllers
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/customer/{customer_id}', [App\Http\Controllers\CustomerAccessController::class, 'index']);
+Route::get('/customer', [App\Http\Controllers\CustomerAccessController::class, 'index']);

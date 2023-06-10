@@ -16,12 +16,18 @@ class Access
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->access=='admin'){
-            return $next($request)->with('success','You are logged in as an Admin.');
-        }else if (auth()->access=='operation'){
-            return redirect('operation')->with('success','You are logged in as an Operation.');
-        }else {
-            return redirect('home')->with('error','You are not yet registered');
+    //     if(auth()->access=='admin'){
+    //         return $next($request)->with('success','You are logged in as an Admin.');
+    //     }else if (auth()->access=='operation'){
+    //         return redirect('operation')->with('success','You are logged in as an Operation.');
+    //     }else {
+    //         return redirect('home')->with('error','You are not yet registered');
+    // }
+        if (!session()->has('loginId')) {
+            return redirect('login')->with('fail', 'You have to log in first.');
+        }
+        
+        return $next($request);
+        
     }
-}
 }

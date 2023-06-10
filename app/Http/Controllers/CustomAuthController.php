@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use App\Models\CustomUser;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Access;
+
 
 class CustomAuthController extends Controller
 {
@@ -69,6 +72,15 @@ class CustomAuthController extends Controller
         }else{
             return back()->with('fail','This username is not registered.');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 
 }
