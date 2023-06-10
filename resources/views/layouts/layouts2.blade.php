@@ -22,13 +22,13 @@
             <div class="container">
                 <a href="/operation" class="brand-logo brand-text"><img class="w-16 h-16" src="/assets/SWS LOGO.png" alt="avatar"/></a>
                 <ul id="nav-mobile" class="right hide-on-small-and-down">
-                    <li><a href="#" class="btn brand z-depth-0">Transaction</a></li>
-                    <li>
+                    <!-- <li><a href="#" class="btn brand z-depth-0">Transaction</a></li> -->
+                    <!-- <li>
                 <form action="{{ route('logout') }}" method="POST" id="logout-form">
                 @csrf
                     <button type="submit" class="btn brand z-depth-0">Logout</button>
                 </form>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </nav>
