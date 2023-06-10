@@ -9,6 +9,7 @@ use App\Http\Controllers\OperationController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ReceiveController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\CustomerAccessController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
